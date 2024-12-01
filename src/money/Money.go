@@ -1,17 +1,17 @@
 package money
 
-type Accessor interface {
-	Amount() int
-	Name() string
-}
+// type Accessor interface {
+// 	Amount() int
+// 	Currency() string
+// }
 
 type Money struct {
-	amount int
-	name   string
+	amount   int
+	currency string
 }
 
-func NewMoney(amount int, name string) *Money {
-	return &Money{amount: amount, name: name}
+func NewMoney(amount int, currency string) *Money {
+	return &Money{amount: amount, currency: currency}
 }
 
 // NewDollar is constructor of Dollar.
@@ -26,23 +26,24 @@ func NewFranc(a int) *Money {
 
 // Times multiplies the amount of the receiver by a multiple of the argument
 func (m *Money) Times(multiplier int) *Money {
-	return &Money{
-		amount: m.amount * multiplier,
-		name:   m.name,
-	}
+	return NewMoney(m.amount*multiplier, m.currency)
 }
 
-func (m *Money) Equals(a Accessor) bool {
-	return m.Amount() == a.Amount() && m.Name() == a.Name()
+func (m *Money) Plus(addend *Money) *Money {
+	return NewMoney(m.amount+addend.amount, m.currency)
 }
 
-func (m *Money) Amount() int {
-	return m.amount
+func (m *Money) Equals(a *Money) bool {
+	return m.amount == a.amount && m.currency == a.currency
 }
 
-func (m *Money) Name() string {
-	return m.name
-}
+// func (m *Money) Amount() int {
+// 	return m.amount
+// }
+
+// func (m *Money) Currency() string {
+// 	return m.currency
+// }
 
 func (m *Money) Dollar() *Money {
 	return NewDollar(m.amount)
