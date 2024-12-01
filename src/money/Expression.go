@@ -1,3 +1,3 @@
 package money
 
-type Expression struct {}
+type Expression interface {}

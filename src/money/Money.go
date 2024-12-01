@@ -16,12 +16,12 @@ func NewMoney(amount int, currency string) *Money {
 
 // NewDollar is constructor of Dollar.
 func NewDollar(a int) *Money {
-	return NewMoney(a, "Dollar")
+	return NewMoney(a, "USD")
 }
 
 // NewFranc is constructor of Dollar.
 func NewFranc(a int) *Money {
-	return NewMoney(a, "Franc")
+	return NewMoney(a, "CHF")
 }
 
 // Times multiplies the amount of the receiver by a multiple of the argument
