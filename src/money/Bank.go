@@ -1,8 +1,7 @@
 package money
 
 type Pair struct {
-	from string
-	to   string
+	from, to string
 }
 
 func NewPair(from string, to string) Pair {
