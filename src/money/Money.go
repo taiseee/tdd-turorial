@@ -33,8 +33,9 @@ func (m Money) Plus(addend Money) Expression {
 	return NewSum(m, addend)
 }
 
-func (m Money) Reduce(to string) Money {
-	return NewMoney(m.amount, to)
+func (m Money) Reduce(bank Bank, to string) Money {
+	rate := bank.Rate(m.currency, to)
+	return NewMoney(m.amount / rate, to)
 }
 
 func (m Money) Equals(a Money) bool {
