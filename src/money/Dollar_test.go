@@ -2,34 +2,25 @@ package money
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMultiplication(t *testing.T) {
 	five := NewDollar(5)
 
-	if !five.Times(2).Equals(NewDollar(10)) {
-		t.Errorf("Error")
-	}
+	assert.Equal(t, NewDollar(10), five.Times(2))
 
-	if !five.Times(3).Equals(NewDollar(15)) {
-		t.Errorf("Error")
-	}
+	assert.Equal(t, NewDollar(15), five.Times(3))
 }
 
 func TestEquality(t *testing.T) {
 	five := NewDollar(5)
 
 	// 実装方法がわかっている場合はこれだけでもいい
-	product := five.Times(3)
-	want := NewDollar(15)
-	if !product.Equals(want) {
-		t.Errorf("Product.amount = %d, want %d", product.amount, want.amount)
-	}
+	assert.Equal(t, NewDollar(15), five.Times(3))
 
 	// 設計アイデアが浮かばない場合は二つ目の実例を追加し三角測量を行ってみる
 	// それによりアイデアが浮かぶ可能性がある
-	six := NewDollar(6)
-	if product.Equals(six) {
-		t.Errorf("Product.amount = %d, but not want %d", product.amount, six.amount)
-	}
+	assert.NotEqual(t, NewDollar(6), five.Times(3))
 }
