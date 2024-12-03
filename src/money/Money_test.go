@@ -74,3 +74,14 @@ func TestSumTimes(t *testing.T) {
 	result := bank.Reduce(sum, "USD")
 	assert.Equal(t, NewDollar(20), result)
 }
+
+func TestSumPlusSum(t *testing.T) {
+	fiveBucks := NewDollar(5)
+	tenFrancs := NewFranc(10)
+	bank := NewBank()
+	bank.AddRate("CHF", "USD", 2)
+	sum1 := NewSum(fiveBucks, tenFrancs)
+	sum2 := NewSum(fiveBucks, tenFrancs)
+	result := bank.Reduce(sum1.Plus(sum2), "USD")
+	assert.Equal(t, NewDollar(20), result)
+}
