@@ -1,31 +1,26 @@
 package money
 
-// type Accessor interface {
-// 	Amount() int
-// 	Currency() string
-// }
-
 type Money struct {
-	amount   int
+	amount   float64
 	currency string
 }
 
-func NewMoney(amount int, currency string) Money {
+func NewMoney(amount float64, currency string) Money {
 	return Money{amount: amount, currency: currency}
 }
 
 // NewDollar is constructor of Dollar.
-func NewDollar(a int) Money {
+func NewDollar(a float64) Money {
 	return NewMoney(a, "USD")
 }
 
 // NewFranc is constructor of Dollar.
-func NewFranc(a int) Money {
+func NewFranc(a float64) Money {
 	return NewMoney(a, "CHF")
 }
 
 // Times multiplies the amount of the receiver by a multiple of the argument
-func (m Money) Times(multiplier int) Expression {
+func (m Money) Times(multiplier float64) Expression {
 	return NewMoney(m.amount*multiplier, m.currency)
 }
 
@@ -42,7 +37,7 @@ func (m Money) Equals(a Money) bool {
 	return m.amount == a.amount && m.currency == a.currency
 }
 
-func (m Money) Amount() int {
+func (m Money) Amount() float64 {
 	return m.amount
 }
 

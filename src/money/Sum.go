@@ -22,7 +22,7 @@ func (s Sum) Plus(addend Expression) Expression {
 	return NewSum(s, addend)
 }
 
-func (s Sum) Times(multiplier int) Expression {
+func (s Sum) Times(multiplier float64) Expression {
 	return NewSum(s.augent.Times(multiplier), s.addend.Times(multiplier))
 }
 
